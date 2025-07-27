@@ -96,6 +96,15 @@ def export(
             help="Use TorchDynamo (Beta) for ONNX export. Only supports static shapes and opset 18."
         ),
     ] = False,
+    model_path: Annotated[
+        Optional[Path],
+        typer.Option(
+            exists=True,
+            dir_okay=False,
+            readable=True,
+            help="Path to torch model model.",
+        ),
+    ] = None,
 ):
     """Export Depth-Anything V2 using TorchDynamo."""
     if encoder == Encoder.vitg:
@@ -120,7 +129,17 @@ def export(
         if metric == Metric.outdoor
         else None,
     )
-    model.load_state_dict(torch.hub.load_state_dict_from_url(config.url))
+    if model_path:
+        typer.echo("Loading local weights")
+        model.load_state_dict(
+            torch.load(
+                model_path,
+                map_location="cpu",
+                weights_only=True,
+            )
+        )
+    else:
+        model.load_state_dict(torch.hub.load_state_dict_from_url(config.url))
 
     if format == ExportFormat.onnx:
         if use_dynamo:
