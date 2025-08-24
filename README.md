@@ -165,3 +165,29 @@ If you use any ideas from the papers or code in this repo, please consider citin
 }
 ```
 
+---
+
+#### Export
+
+```bash
+python dynamo.py export \
+    --encoder vits \
+    --metric outdoor \
+    --output models/vkitti_vits_hf_dynamo.onnx \
+    --format onnx \
+    --batch-size 0 \
+    --height 0 \
+    --width 0 \
+    --no-use-dynamo
+```
+
+#### Infer
+
+```bash
+python dynamo.py infer \
+    models/vkitti_vits_hf_dynamo.onnx \
+    --image data/first_frame.png \
+    --height 1022 \
+    --width 1022 \
+    --output outputs/first_frame_depth.png
+```
