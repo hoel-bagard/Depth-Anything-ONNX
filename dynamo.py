@@ -274,6 +274,7 @@ def infer(
         cv2.imshow("depth", depth)
         cv2.waitKey(0)
     else:
+        output_path.parent.mkdir(exist_ok=True, parents=True)
         cv2.imwrite(str(output_path), depth)
 
 
