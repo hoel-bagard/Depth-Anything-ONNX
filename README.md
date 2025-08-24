@@ -13,6 +13,7 @@ Open Neural Network Exchange (ONNX) compatible implementation of [Depth Anything
 <p align="center"><img src="assets/sample.png" width=90%></p>
 
 #### Changelog:
+
 - **22 June 2024**: Support Depth Anything V2 and TorchDynamo Export.
 - **22 January 2024**: Release.
 
@@ -23,10 +24,10 @@ We provide a simple command-line tool [`dynamo.py`](dynamo.py) based on [Typer](
 ```shell
 $ python dynamo.py --help
 
- Usage: dynamo.py [OPTIONS] COMMAND [ARGS]...                            
-                                                                         
- Depth-Anything Dynamo CLI                                               
-                                                                         
+ Usage: dynamo.py [OPTIONS] COMMAND [ARGS]...
+
+ Depth-Anything Dynamo CLI
+
 ╭─ Commands ───────────────────────────────────────────────╮
 │ export   Export Depth-Anything V2 using TS or Dynamo.    │
 │ infer    Depth-Anything V2 inference using ONNXRuntime.  │
@@ -38,13 +39,14 @@ If you would like to try out inference right away, you can download ONNX models 
 
 We observe the following average latencies using the CUDA Execution Provider:
 
-| Device | Encoder | Input Shape | Average Latency (ms) |
-| --- | --- | --- | --- |
-| RTX4080 12GB | ViT-S | `(1, 3, 518, 518)` | 13.3 |
-| RTX4080 12GB | ViT-B | `(1, 3, 518, 518)` | 29.3 |
-| RTX4080 12GB | ViT-L | `(1, 3, 518, 518)` | 83.2 |
+| Device       | Encoder | Input Shape        | Average Latency (ms) |
+| ------------ | ------- | ------------------ | -------------------- |
+| RTX4080 12GB | ViT-S   | `(1, 3, 518, 518)` | 13.3                 |
+| RTX4080 12GB | ViT-B   | `(1, 3, 518, 518)` | 29.3                 |
+| RTX4080 12GB | ViT-L   | `(1, 3, 518, 518)` | 83.2                 |
 
 Relevant framework versions:
+
 ```text
 CUDA==12.1
 cuDNN==8.9.2
@@ -87,6 +89,7 @@ This function serves as an implementation reference for performing inference wit
 ---
 
 ### Legacy
+
 <details>
 <summary> V1 </summary>
 ## 🔥 ONNX Export
@@ -115,7 +118,6 @@ python infer.py --img assets/DSC_0410.JPG --model weights/depth_anything_vits14.
 </pre>
 </details>
 
-
 ## ⏱️ Inference Time Comparison
 
 <p align="center"><img src="assets/latency.png" alt="Latency Comparison" width=90%>
@@ -134,11 +136,12 @@ All experiments are conducted on an i9-12900HX CPU and RTX4080 12GB GPU with `CU
 </details>
 
 ## Credits
+
 If you use any ideas from the papers or code in this repo, please consider citing the authors of [Depth Anything](https://arxiv.org/abs/2401.10891), [Depth Anything V2](https://arxiv.org/abs/2406.09414) and [DINOv2](https://arxiv.org/abs/2304.07193). Lastly, if the ONNX versions helped you in any way, please also consider starring this repository.
 
 ```bibtex
 @article{yang2024depth,
-      title={Depth Anything V2}, 
+      title={Depth Anything V2},
       author={Lihe Yang and Bingyi Kang and Zilong Huang and Zhen Zhao and Xiaogang Xu and Jiashi Feng and Hengshuang Zhao},
       year={2024},
       eprint={2406.09414},
@@ -149,7 +152,7 @@ If you use any ideas from the papers or code in this repo, please consider citin
 
 ```bibtex
 @article{depthanything,
-      title={Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data}, 
+      title={Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data},
       author={Yang, Lihe and Kang, Bingyi and Huang, Zilong and Xu, Xiaogang and Feng, Jiashi and Zhao, Hengshuang},
       journal={arXiv:2401.10891},
       year={2024}
