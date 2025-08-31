@@ -268,7 +268,8 @@ def infer(
     # Postprocessing, implement this part in your chosen language:
     depth = (depth - depth.min()) / (depth.max() - depth.min()) * 255.0
     depth = depth.transpose(1, 2, 0).astype("uint8")
-    depth = cv2.resize(depth, (w, h), interpolation=cv2.INTER_CUBIC)
+    if not width and not height:
+        depth = cv2.resize(depth, (w, h), interpolation=cv2.INTER_CUBIC)
 
     if output_path is None:
         cv2.imshow("depth", depth)
